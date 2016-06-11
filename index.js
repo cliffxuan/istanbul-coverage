@@ -1,15 +1,19 @@
-import R from 'ramda';
- 
 export function cumulative(costsObject) {
-  const [months, costs]= R.transpose(R.toPairs(costsObject).sort());
+  const months = Object.keys(costsObject).sort();
+  const costs = months.map(month => costsObject[month]);
  
-  const getCostsByCategory = category => R.pluck(category, costs)
+  const getCostsByCategory = category => costs.map(item => item[category]);
   const costs1 = getCostsByCategory('costs1');
   const costs2 = getCostsByCategory('costs2');
   const costs3 = getCostsByCategory('costs3');
  
-  const totalCosts = R.transpose([costs1, costs2, costs3]).map(R.sum);
-  const [, ...totalCumulativeCosts] = R.scan(R.add, 0, totalCosts);
+  const totalCosts = costs1.map((val, i) => val + costs2[i] + costs3[i]);
+  const totalCumulativeCosts = [];
+  let cumulative = 0;
+  for (const costs of totalCosts) {
+    cumulative += costs;
+    totalCumulativeCosts.push(cumulative);
+  };
  
   return {
     months,
