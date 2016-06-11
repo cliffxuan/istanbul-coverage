@@ -10,10 +10,10 @@ export function cumulative(costsObject) {
   const totalCosts = costs1.map((val, i) => val + costs2[i] + costs3[i]);
   const totalCumulativeCosts = [];
   let cumulative = 0;
-  for (const costs of totalCosts) {
+  totalCosts.map(costs => {
     cumulative += costs;
     totalCumulativeCosts.push(cumulative);
-  };
+  });
  
   return {
     months,
