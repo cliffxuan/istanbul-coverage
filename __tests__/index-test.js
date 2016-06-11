@@ -1,7 +1,7 @@
 import {cumulative} from '../index';
 
 describe('cumulative', () => {
-  it(`extracts, aggregate, and cumulate costs from different categories`, () => {
+  it(`extracts, aggregates, and cumulates costs from different categories`, () => {
     const costsObject = {
       '2016-01': {costs1: 1, costs2: 2, costs3: 3},
       '2016-02': {costs1: 2, costs2: 3, costs3: 4},
